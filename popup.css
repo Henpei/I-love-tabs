@@ -21,17 +21,51 @@ body {
 .tab-preview {
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  margin: 6px 0;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: background-color 0.3s;
 }
 
 .tab-preview:hover {
   background-color: #f0f0f0;
-  transform: scale(1.02);
+}
+
+/* Highlight rows that are currently playing sound */
+.tab-preview.audible {
+  background-color: #e8f0fe;
+  border-color: #a8c7fa;
+}
+
+.tab-preview.audible:hover {
+  background-color: #dce7fd;
+}
+
+#enable-previews {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+#enable-previews:hover {
+  background-color: #f0f0f0;
+}
+
+.tab-screenshot {
+  width: 128px;
+  height: 80px;
+  margin-right: 10px;
+  object-fit: cover;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  flex-shrink: 0;
 }
 
 .tab-favicon {
@@ -39,14 +73,7 @@ body {
   height: 24px;
   margin-right: 10px;
   border-radius: 4px;
-}
-
-.tab-screenshot {
-  width: 80px;
-  height: 60px;
-  margin-right: 10px;
-  object-fit: cover;
-  border-radius: 4px;
+  flex-shrink: 0;
 }
 
 .tab-title {
@@ -57,4 +84,47 @@ body {
   font-size: 14px;
   font-weight: bold;
   color: #333;
+}
+
+.tab-audible-icon {
+  margin-left: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: #1a73e8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tab-audible-icon:hover {
+  background-color: #dce7fd;
+}
+
+.tab-mute-button {
+  margin-left: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: #333;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tab-mute-button:hover {
+  background-color: #e0e0e0;
+}
+
+.tab-audible-icon svg,
+.tab-mute-button svg {
+  width: 14px;
+  height: 14px;
+  display: block;
 }

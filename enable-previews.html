@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Enable previews — I Love Tabs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 480px;
+            margin: 40px auto;
+            padding: 0 16px;
+            color: #333;
+        }
+        button {
+            padding: 8px 16px;
+            margin-top: 12px;
+            margin-right: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #f0f0f0;
+        }
+        #status {
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enable previews — I Love Tabs</h1>
+    <p id="status">Requesting permission…</p>
+    <button type="button" id="continue-button" hidden>Continue</button>
+    <button type="button" id="try-again-button" hidden>Try again</button>
+    <script src="enable-previews.js"></script>
+</body>
+</html>
