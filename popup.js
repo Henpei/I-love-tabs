@@ -15,20 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-tabs');
     let allTabs = []; // Store all tabs here
 
-    // Refresh interval for screenshots (adjust based on your preference)
-    const SCREENSHOT_REFRESH_INTERVAL = 5000; // Refresh every 5 seconds
-
     // Set up a debounce function to avoid searching on every keystroke
     let debounceTimeout;
     const debounceDelay = 300; // Delay in milliseconds (e.g., 300ms after typing stops)
-
-    // Fetch tabs from background.js using a message listener
-    browser.runtime.onMessage.addListener((message) => {
-        if (message.action === 'listTabs') {
-            allTabs = message.tabs; // Update the allTabs variable
-            displayTabs(message.tabs); // Display the tabs on initial load
-        }
-    });
 
     // Event listener for the search bar
     searchInput.addEventListener('input', (event) => {
@@ -45,13 +34,23 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const screenshotUrl = await browser.tabs.captureTab(tabId, {});
             return screenshotUrl;
-        } catch (error) {
+        } catch {
             return 'icons/default-screenshot.png'; // Fallback if screenshot fails to load
         }
     }
 
+    // Serialize display runs so overlapping calls can't interleave (race condition guard)
+    let displayQueue = Promise.resolve();
+
     // Function to display the tabs and create previews
-    async function displayTabs(tabs) {
+    function displayTabs(tabs) {
+        displayQueue = displayQueue.then(() => renderTabs(tabs)).catch((error) => {
+            console.error('Failed to display tabs:', error);
+        });
+        return displayQueue;
+    }
+
+    async function renderTabs(tabs) {
         tabsContainer.innerHTML = ''; // Clear the current tabs
 
         for (const tab of tabs) {
@@ -78,9 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
             tabScreenshot.className = 'tab-screenshot';
             tabScreenshot.src = await captureScreenshot(tab.id);
 
-            // Add click event to activate the tab
-            tabPreview.addEventListener('click', () => {
-                browser.tabs.update(tab.id, { active: true });
+            // Add click event to activate the tab and raise its window
+            tabPreview.addEventListener('click', async () => {
+                await browser.tabs.update(tab.id, { active: true });
+                await browser.windows.update(tab.windowId, { focused: true });
                 window.close();
             });
 
