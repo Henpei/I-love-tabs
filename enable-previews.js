@@ -1,13 +1,20 @@
-/*
- * Mozilla Public License, v. 2.0
- *
- * This code is licensed under the Mozilla Public License, v. 2.0.
- * You can obtain a copy of the License at:
- * https://www.mozilla.org/en-US/MPL/2.0/
- *
- * This software is distributed on an "AS IS" basis,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- */
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// I Love Tabs — a Firefox extension for browsing and searching open tabs.
+// Copyright (C) 2026 André Motoda
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Page script for enable-previews.html — kept in a separate file because the
 // default extension CSP (script-src 'self') blocks inline scripts.
