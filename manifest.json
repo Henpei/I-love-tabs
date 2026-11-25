@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "I Love Tabs",
-  "version": "1.0",
+  "version": "1.2",
   "description": "I Love Tabs helps you browse and search your open tabs by title—so you can find what you need, fast!",
   "permissions": [
     "tabs"
